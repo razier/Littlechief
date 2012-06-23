@@ -2,7 +2,7 @@
 
 A tiny online text editor written in php.
 
-![alt text](http://i.imgur.com/7Lba5.png "Screenshot of Littlechief which showed one box containing the text editor containing the php code and another box showing the preview of the php page")
+![alt text](http://i.imgur.com/FxVP6.png "Screenshot of Littlechief which showed one box containing the text editor containing the php code and another box showing the preview of the php page")
 
 ## User guide
 * Upload littlechief.php to the folder that contains the file that you wanted to edit
