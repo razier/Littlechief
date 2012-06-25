@@ -559,7 +559,45 @@ for($x=0;$x<$toc;$x++){
 
 			var kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
 
-			if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.altKey){
+			if (kC == 9 && e.shiftKey && !e.ctrlKey && !e.altKey){
+				// Handle multiple line shift tab
+
+				var oS = o.scrollTop;
+
+				var sS = o.selectionStart;
+				var sE = o.selectionEnd;
+
+				if (o.value.slice(sS,sE).indexOf("\n")>=0){
+
+					var pre = o.value.slice(0,sS);
+					var sel = o.value.slice(sS,sE);
+					var post = o.value.slice(sE,o.value.length);
+
+					var a = sel.split("\n")
+
+					for (i=0;i<a.length;i++){
+						if(a[i].length>0){
+							if(a[i].charCodeAt(0)==9){
+								a[i]=a[i].substring(1);
+							}else{
+								a[i]=a[i];
+							}
+						}
+					}
+
+					o.value=pre+a.join("\n")+post;
+					o.setSelectionRange(sS, sS+a.join("\n").length);
+					o.focus();
+
+				}
+
+				if (e.preventDefault){
+					e.preventDefault();
+				}
+
+				return false;
+
+			}else if (kC == 9 && !e.shiftKey && !e.ctrlKey && !e.altKey){
 
 				var oS = o.scrollTop;
 
@@ -581,7 +619,7 @@ for($x=0;$x<$toc;$x++){
 					}
 
 					o.value=pre+a.join("\n")+post;
-					o.setSelectionRange(sS + 1, sS + 1);
+					o.setSelectionRange(sS, sS+a.join("\n").length);
 					o.focus();
 
 				}else if (o.setSelectionRange){
