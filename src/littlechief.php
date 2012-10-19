@@ -123,6 +123,11 @@ h3{
 	background:#eee;
 	color:#666;
 	text-decoration:none;
+
+	-webkit-transition: background 0.2s linear;
+	-moz-transition: background 0.2s linear;
+	-o-transition: background 0.2s linear;
+	transition: background 0.2s linear;
 }
 
 #filebrowser li a:hover{
