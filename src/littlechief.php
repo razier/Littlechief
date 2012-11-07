@@ -355,7 +355,7 @@ for($x=0;$x<$toc;$x++){
 <?php
 						if(substr($filename,-3)=="css"){
 ?>
-						<li><label for="previewpage">Preview</label><input type="text=" name="previewpage" id="previewpage" onchange="refreshframe();" /></li>
+						<li><label for="previewpage">Preview</label><input type="text=" name="previewpage" id="previewpage" onchange="refreshframe();" value="<?php echo $filename; ?>"/></li>
 <?php
 						}
 ?>
@@ -540,7 +540,23 @@ for($x=0;$x<$toc;$x++){
 		}
 
 		function refreshframe(){
-			document.getElementById('preframe').src=document.getElementById('preframe').src;
+<?php
+						if(substr($filename,-3)=="css"){
+?>
+			if(document.getElementById('previewpage').value!=""){
+				document.getElementById('preframe').src=document.getElementById('previewpage').value;
+			}else{
+				document.getElementById('preframe').src=document.getElementById('preframe').src;
+			}
+<?php
+						}else{
+?>
+				document.getElementById('preframe').src=document.getElementById('preframe').src;
+<?php
+
+						}
+?>
+
 		}
 
 		function leave(){
